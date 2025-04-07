@@ -118,7 +118,7 @@ ul, ol {
 .input {
   height: 40px;
   padding: 0px 15px;
-  border: 1px solid #E4E7ED;
+  border: 1px solid #000099;
   background-color: #FFF;
   width: 100%;
 }
@@ -184,7 +184,7 @@ textarea.input {
 .input-select {
   padding: 0px 15px;
   background: #FFF;
-  border: 1px solid #E4E7ED;
+  border: 1px solid #000099;
   height: 40px;
   color: black
 }
@@ -411,9 +411,12 @@ textarea.input {
 \*----------------------------*/
 
 #top-header {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: #1E1F29;
+  #top-header {
+    border-bottom: 2px solid #1e1aff; /* match nav border color */
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
 }
 
 .header-links li {
@@ -435,7 +438,7 @@ textarea.input {
 }
 
 .header-links li i {
-  color: #D10024;
+  color: #000099;
   margin-right: 5px;
 }
 
@@ -855,24 +858,26 @@ textarea.input {
 .product {
   position: relative;
   margin: 15px 0px;
-  -webkit-box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
-  box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
+  -webkit-box-shadow: 0px 0px 0px 0px #000269, 0px 0px 0px 1px #000269;
+  box-shadow: 0px 0px 0px 0px #000269, 0px 0px 0px 1px #000269;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
 
 .product:hover {
-  -webkit-box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #D10024;
-  box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #000066;
+  -webkit-box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #00083f;
+  box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #00083f;
 }
 
 .product .product-img {
   position: relative;
 }
 
-.product .product-img>img {
+.product .product-img > img {
   width: 100%;
 }
+
+
 
 .product .product-img .product-label {
   position: absolute;
@@ -888,13 +893,13 @@ textarea.input {
 
 .product .product-img .product-label>span.sale {
   background-color: #FFF;
-  border-color: #D10024;
-  color: #D10024;
+  border-color: #00083f;
+  color: #00083f;
 }
 
 .product .product-img .product-label>span.new {
-  background-color: #D10024;
-  border-color: #D10024;
+  background-color: #00083f;
+  border-color: #00083f;
   color: #FFF;
 }
 
@@ -922,7 +927,7 @@ textarea.input {
 }
 
 .product .product-body .product-name>a:hover, .product .product-body .product-name>a:focus {
-  color: #D10024;
+  color: #000269;
 }
 
 .product .product-body .product-price {
@@ -981,7 +986,7 @@ textarea.input {
 
 .product .product-body .product-btns>button:hover {
   background-color: #E4E7ED;
-  color: #D10024;
+  color: #000b5b;
   border-radius: 50%;
 }
 
@@ -1020,7 +1025,6 @@ textarea.input {
   right: 1px;
   bottom: 1px;
   padding: 15px;
-  background: #1e1f29;
   text-align: center;
   -webkit-transform: translateY(0%);
   -ms-transform: translateY(0%);
@@ -1041,7 +1045,7 @@ textarea.input {
   border: 2px solid transparent;
   height: 40px;
   padding: 0 30px;
-  background-color: #ef233c;
+  background-color: #000066;
   color: #FFF;
   text-transform: uppercase;
   font-weight: 700;
@@ -1057,15 +1061,15 @@ textarea.input {
   width: 40px;
   height: 40px;
   line-height: 38px;
-  color: #D10024;
+  color: #000066;
   opacity: 0;
   visibility: hidden;
 }
 
 .product .add-to-cart .add-to-cart-btn:hover {
   background-color: #FFF;
-  color: #D10024;
-  border-color: #D10024;
+  color: #000066;
+  border-color: #000066;
   padding: 0px 30px 0px 50px;
 }
 
@@ -1118,7 +1122,7 @@ textarea.input {
 }
 
 .product-widget .product-body .product-name>a:hover, .product-widget .product-body .product-name>a:focus {
-  color: #D10024;
+  color: #000269;
 }
 
 .product-widget .product-body .product-price {
@@ -1164,6 +1168,7 @@ textarea.input {
 .products-slick .product.slick-slide {
   margin: 15px;
 }
+
 
 .products-tabs>.tab-pane {
   display: block;
@@ -2385,7 +2390,7 @@ textarea.input {
   }
 }
 .header-logo img {
-  height: 60px; /* Adjust as needed */
+  height: 90px; /* Adjust as needed */
   width: auto; /* Maintain aspect ratio */
   display: block;
 }
@@ -2480,6 +2485,10 @@ body.register-page #main-header {
 
 .shop-now-btn:hover {
   background-color: #0036c1; /* Lighter blue on hover */
+}
+
+#navigation {
+  margin-top:40px
 }
 
 

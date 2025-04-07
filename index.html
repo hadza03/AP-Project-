@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Electro - HTML Ecommerce Template</title>
+    <title>Audio Projekt</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -100,12 +100,13 @@
         <div class="container">
             <div id="responsive-nav">
                 <ul class="main-nav nav navbar-nav">
-                    <li class="active"><a href="#" onclick="loadPage('home')">Home</a></li>
-                    <li><a href="#" onclick="loadPage('store')">Store</a></li>
-                    <li><a href="#" onclick="loadPage('product')">Product</a></li>
-                    <li><a href="#" onclick="loadPage('register')">Register</a></li>
-                    <li><a href="#" onclick="loadPage('login')">Login</a></li>
-                    <li><a href="#" onclick="loadPage('checkout')">Checkout</a></li>
+                    <li id="nav-home"><a href="#" onclick="loadPage('home')">Home</a></li>
+                    <li id="nav-store"><a href="#" onclick="loadPage('store')">Store</a></li>
+                    <li id="nav-product"><a href="#" onclick="loadPage('product')">Product</a></li>
+                    <li id="nav-register"><a href="#" onclick="loadPage('register')">Register</a></li>
+                    <li id="nav-login"><a href="#" onclick="loadPage('login')">Login</a></li>
+                    <li id="nav-checkout"><a href="#" onclick="loadPage('checkout')">Checkout</a></li>
+
                 </ul>
             </div>
         </div>
@@ -201,12 +202,13 @@
 
 
     <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="frontend/js/jquery.min.js"></script>
+    <script src="frontend/js/slick.min.js"></script>
     <script src="frontend/js/bootstrap.min.js"></script>
     <script src="frontend/js/main.js"></script>
     <script src="frontend/js/jquery.zoom.min.js"></script>
     <script src="frontend/js/nouislider.min.js"></script>
-    <script src="frontend/js/slick.min.js"></script>
     <script src="frontend/js/spa.js"></script> <!-- SPA Script -->
 
 </body>
