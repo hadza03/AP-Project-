@@ -1,0 +1,370 @@
+openapi: 3.0.0
+info:
+  title: Audio Web App API
+  version: 1.0.0
+  description: OpenAPI specification for all entity routes (Users, Products, Orders, OrderItems, Reviews)
+servers:
+  - url: http://localhost/AUDIOPROJEKT/backend
+paths:
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: List of users
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, email, password]
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User created
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A single user
+    put:
+      summary: Update user by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: User updated
+    delete:
+      summary: Delete user by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User deleted
+
+  /products:
+    get:
+      summary: Get all products
+      responses:
+        '200':
+          description: List of products
+    post:
+      summary: Create a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, price, category]
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                category:
+                  type: string
+      responses:
+        '201':
+          description: Product created
+  /products/{id}:
+    get:
+      summary: Get product by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A single product
+    put:
+      summary: Update product by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                category:
+                  type: string
+      responses:
+        '200':
+          description: Product updated
+    delete:
+      summary: Delete product by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Product deleted
+
+  /orders:
+    get:
+      summary: Get all orders
+      responses:
+        '200':
+          description: List of orders
+    post:
+      summary: Create a new order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [user_id, status, total]
+              properties:
+                user_id:
+                  type: integer
+                status:
+                  type: string
+                total:
+                  type: number
+      responses:
+        '201':
+          description: Order created
+  /orders/{id}:
+    get:
+      summary: Get order by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A single order
+    put:
+      summary: Update order by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                total:
+                  type: number
+      responses:
+        '200':
+          description: Order updated
+    delete:
+      summary: Delete order by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Order deleted
+
+  /orderitems:
+    get:
+      summary: Get all order items
+      responses:
+        '200':
+          description: List of order items
+    post:
+      summary: Create a new order item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [order_id, product_id, quantity, price]
+              properties:
+                order_id:
+                  type: integer
+                product_id:
+                  type: integer
+                quantity:
+                  type: integer
+                price:
+                  type: number
+      responses:
+        '201':
+          description: Order item created
+  /orderitems/{id}:
+    get:
+      summary: Get order item by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A single order item
+    put:
+      summary: Update order item by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                price:
+                  type: number
+      responses:
+        '200':
+          description: Order item updated
+    delete:
+      summary: Delete order item by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Order item deleted
+
+  /reviews:
+    get:
+      summary: Get all reviews
+      responses:
+        '200':
+          description: List of reviews
+    post:
+      summary: Create a new review
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [user_id, product_id, rating, comment]
+              properties:
+                user_id:
+                  type: integer
+                product_id:
+                  type: integer
+                rating:
+                  type: integer
+                comment:
+                  type: string
+      responses:
+        '201':
+          description: Review created
+  /reviews/{id}:
+    get:
+      summary: Get review by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A single review
+    put:
+      summary: Update review by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: integer
+                comment:
+                  type: string
+      responses:
+        '200':
+          description: Review updated
+    delete:
+      summary: Delete review by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Review deleted
