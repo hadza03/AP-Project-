@@ -58,6 +58,26 @@ $('.products-widget-slick').each(function () {
       })
       .then(html => {
         document.getElementById("content").innerHTML = html;
+        
+        // ✅ Set username if user is logged in
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user && user.username) {
+        const userHeader = document.getElementById("account-user");
+        if (userHeader) userHeader.innerText = user.username;
+
+        if (user) {
+        document.getElementById("nav-register")?.remove();
+        document.getElementById("nav-login")?.remove();
+}
+
+  }
+
+        const script = document.createElement("script");
+        script.src = `frontend/js/${page}.js`;
+        script.onload = () => console.log(`${page}.js loaded`);
+        showRoleBasedElements();
+        script.onerror = () => console.warn(`${page}.js not found (optional)`);
+        document.body.appendChild(script);
   
         // Update body class
         document.body.className = (page === "login" || page === "register") ? "auth-page" : "main-page";
@@ -85,4 +105,28 @@ $('.products-widget-slick').each(function () {
     let page = window.location.hash.substring(1) || "home";
     loadPage(page);
   };
-  
+
+
+  function showRoleBasedElements() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  document.querySelectorAll(".admin-only").forEach(el => {
+    if (user && user.role === "admin") {
+      el.style.display = "inline-block";
+    } else {
+      el.style.display = "none";
+    }
+  });
+
+  const userHeader = document.getElementById("account-user");
+  if (user && userHeader) {
+    userHeader.innerText = user.username;
+    const logoutBtn = document.getElementById("nav-logout");
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
+  }
+}
+function logout() {
+  		localStorage.clear();
+  		window.location.hash = "#home";
+ 		window.location.reload();
+ 	}
+

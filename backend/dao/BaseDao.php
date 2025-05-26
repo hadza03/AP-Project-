@@ -1,5 +1,7 @@
 <?php
-require_once 'config.php';
+require_once __DIR__ . '/../config/Config.php';
+require_once __DIR__ . '/../db/Database.php';
+
 
 class BaseDao {
     protected $table;
@@ -50,5 +52,12 @@ class BaseDao {
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+
+    public function query_unique($query, $params = []) {
+    $stmt = $this->connection->prepare($query);
+    $stmt->execute($params);
+    return $stmt->fetch();
+}
+
 }
 ?>

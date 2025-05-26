@@ -1,9 +1,16 @@
 <?php
+
+require_once __DIR__ . '/../routes/jwtMiddleware.php';
+
+
+
 require_once __DIR__ . '/../services/UserService.php';
 require_once __DIR__ . '/../services/ProductService.php';
 require_once __DIR__ . '/../services/OrderService.php';
 require_once __DIR__ . '/../services/OrderItemService.php';
 require_once __DIR__ . '/../services/ReviewService.php';
+
+
 
 // PING
 Flight::route('GET /ping', function(){
@@ -11,6 +18,19 @@ Flight::route('GET /ping', function(){
 });
 
 // ----------------------- USER ROUTES -----------------------
+
+// Only ADMIN can access this route
+Flight::route('GET /admin/users', function () {
+    jwtMiddleware::authenticate();           // 1. Provjeri token
+    jwtMiddleware::require_role('admin');    // 2. Provjeri ulogu
+
+    $users = (new UserService())->getAllUsers(); // 3. Vrati sve korisnike
+    Flight::json([$users]);
+});
+
+
+
+
 Flight::route('GET /users', fn() => Flight::json((new UserService())->getAllUsers()));
 Flight::route('GET /users/@id', fn($id) => Flight::json((new UserService())->getUserById($id)));
 
@@ -99,3 +119,29 @@ Flight::route('PUT /reviews/@id', function($id) {
 Flight::route('DELETE /reviews/@id', function($id) {
     Flight::json((new ReviewService())->deleteReview($id));
 });
+
+Flight::route('GET /test', function () {
+    echo "Test radi!";
+});
+
+Flight::route('GET /test/jwt', function () {
+    $payload = jwtMiddleware::authenticate(); // provjeri token
+    jwtMiddleware::require_role('user');      // provjeri ulogu
+
+    Flight::json([
+        "message" => "Token validan i uloga user OK",
+        "user" => $payload
+    ]);
+});
+
+Flight::route('GET /auth/me/admin', function () {
+    $decoded = jwtMiddleware::authenticate();
+    jwtMiddleware::require_role("admin");
+
+    Flight::json([
+        "message" => "Token validan i uloga admin OK",
+        "user" => $decoded["user"]
+    ]);
+});
+
+
