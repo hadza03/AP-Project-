@@ -31,8 +31,16 @@
             </ul>
             <ul class="header-links pull-right">
                 <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                <li><a href="#"><i class="fa fa-user-o"></i> <span id="account-user">My Account</span></a></li>
+                <li id="nav-logout" style="display:none;"><a href="#" onclick="logout()">Logout</a></li>
+
+
+                <li id="nav-admin" class="admin-only" style="display:none;">
+                <a href="#" onclick="loadPage('admin')">Admin Panel</a>
+                </li> 
+
             </ul>
+            
         </div>
     </div>
     <!-- /TOP HEADER -->

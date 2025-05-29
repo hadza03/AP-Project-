@@ -165,4 +165,11 @@
 		});
 	}
 
+	function logout() {
+  		localStorage.clear();
+  		window.location.hash = "#home";
+ 		window.location.reload();
+ 	}
+
+
 })(jQuery);
