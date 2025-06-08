@@ -39,4 +39,15 @@ class ProductService {
     public function deleteProduct($id) {
         return $this->productDao->delete($id);
     }
+
+    public function getPaginated($limit, $offset) {
+    $conn = $this->productDao->getConnection();
+    $stmt = $conn->prepare("SELECT * FROM products LIMIT :limit OFFSET :offset");
+    $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 }

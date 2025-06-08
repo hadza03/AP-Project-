@@ -33,7 +33,9 @@ Flight::group('/auth', function() {
                 'data' => $response['data']
             ]);
         } else {
-            Flight::halt(401, $response['error']);
+            Flight::json([
+            "error" => $response["error"]
+            ], 401);    
         }
     });
 

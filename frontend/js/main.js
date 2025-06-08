@@ -12,12 +12,48 @@
 		e.stopPropagation();
 	});
 
+	// Cart Popup toggle
+	document.addEventListener("DOMContentLoaded", () => {
+		const cartPopup = document.createElement("div");
+		cartPopup.id = "cart-popup";
+		cartPopup.style.position = "fixed";
+		cartPopup.style.top = "60px";
+		cartPopup.style.right = "20px";
+		cartPopup.style.width = "300px";
+		cartPopup.style.maxHeight = "400px";
+		cartPopup.style.overflowY = "auto";
+		cartPopup.style.background = "#fff";
+		cartPopup.style.border = "1px solid #ccc";
+		cartPopup.style.boxShadow = "0 2px 10px rgba(0,0,0,0.2)";
+		cartPopup.style.padding = "10px";
+		cartPopup.style.zIndex = "9999";
+		cartPopup.style.display = "none";
+		document.body.appendChild(cartPopup);
+
+		const cartLink = document.querySelector(".fa-shopping-cart").closest("a");
+		cartLink.addEventListener("click", (e) => {
+			e.preventDefault();
+			const cart = JSON.parse(localStorage.getItem("cart")) || [];
+			if (cart.length === 0) {
+				cartPopup.innerHTML = "<p>Your cart is empty.</p>";
+			} else {
+				cartPopup.innerHTML = cart.map(item => `
+					<div style="border-bottom: 1px solid #eee; padding: 5px 0;">
+						<strong>${item.name}</strong><br>
+						${item.quantity} x ${item.price} KM
+					</div>
+				`).join("");
+			}
+			cartPopup.style.display = cartPopup.style.display === "none" ? "block" : "none";
+		});
+	});
+
 	/////////////////////////////////////////
 
 	// Products Slick
 	$('.products-slick').each(function() {
 		var $this = $(this),
-				$nav = $this.attr('data-nav');
+			$nav = $this.attr('data-nav');
 
 		$this.slick({
 			slidesToShow: 4,
@@ -49,7 +85,7 @@
 	// Products Widget Slick
 	$('.products-widget-slick').each(function() {
 		var $this = $(this),
-				$nav = $this.attr('data-nav');
+			$nav = $this.attr('data-nav');
 
 		$this.slick({
 			infinite: true,
