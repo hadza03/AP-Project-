@@ -47,7 +47,7 @@ function initializeSlick() {
 }
 
 function loadPage(page) {
-  fetch(`frontend/views/${page}.html`)
+  fetch(`views/${page}.html`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Page not found: ${page}`);
