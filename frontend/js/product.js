@@ -14,7 +14,7 @@ import { getProductById } from "./services/productService.js";
       <div class="container product-detail">
         <div class="row">
           <div class="col-md-6">
-            <img src="frontend/images/${product.image || 'default.jpg'}" alt="${product.name}" class="img-fluid">
+            <img src="/images/${product.image || 'default.jpg'}" alt="${product.name}" class="img-fluid">
           </div>
           <div class="col-md-6">
             <h2>${product.name}</h2>

@@ -42,7 +42,7 @@ const addToCart = (product) => {
       <div class="col-md-4 col-xs-6">
         <div class="product" data-id="${p.id}" style="cursor: pointer;">
           <div class="product-img">
-            <img src="frontend/images/${p.image || 'default.jpg'}" alt="${p.name}">
+            <img src="/images/${p.image || 'default.jpg'}" alt="${p.name}">
             <div class="product-label">
               <span class="new">NEW</span>
             </div>
