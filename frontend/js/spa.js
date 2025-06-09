@@ -72,7 +72,7 @@ function loadPage(page) {
       // ✅ Load corresponding JS file as a module
       const script = document.createElement("script");
       script.type = "module";
-      script.src = `frontend/js/${page}.js`;
+      script.src = `/js/${page}.js`;
       script.onload = () => console.log(`${page}.js loaded`);
       script.onerror = () => console.warn(`${page}.js not found (optional)`);
       document.body.appendChild(script);
