@@ -6,6 +6,13 @@ class ProductDao extends BaseDao {
         parent::__construct("products");
     }
 
+    public function getById($id) {
+    $stmt = $this->connection->prepare("SELECT * FROM products WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
     public function getByCategory($category) {
         $stmt = $this->connection->prepare("SELECT * FROM products WHERE category = :category");
         $stmt->bindParam(':category', $category);

@@ -1,11 +1,14 @@
 <?php
 require_once __DIR__ . '/../dao/OrderDao.php';
+require_once __DIR__ . '/../dao/OrderItemDao.php';
 
 class OrderService {
     private $orderDao;
+    private $orderItemDao;
 
     public function __construct() {
         $this->orderDao = new OrderDao();
+        $this->orderItemDao = new OrderItemDao();
     }
 
     public function getAllOrders() {
@@ -17,22 +20,37 @@ class OrderService {
     }
 
     public function addOrder($data) {
-        if (empty($data['user_id']) || empty($data['status']) || !isset($data['total'])) {
-            throw new Exception("User ID, status, and total are required.");
+        if (!isset($data->user_id, $data->total, $data->items)) {
+            throw new Exception("Missing order data");
         }
 
-        if (!is_numeric($data['total']) || $data['total'] < 0) {
-            throw new Exception("Total must be a non-negative number.");
+        $order_id = $this->orderDao->insert([
+            'user_id' => $data->user_id,
+            'total' => $data->total,
+            'status' => 'pending'
+        ]);
+
+        foreach ($data->items as $item) {
+            if (!isset($item->id, $item->quantity, $item->price)) {
+                throw new Exception("Invalid item structure");
+            }
+
+            $stmt = $this->orderDao->getConnection()->prepare("
+                INSERT INTO order_items (order_id, product_id, quantity, price)
+                VALUES (:order_id, :product_id, :quantity, :price)
+            ");
+            $stmt->execute([
+                ':order_id' => $order_id,
+                ':product_id' => $item->id,
+                ':quantity' => $item->quantity,
+                ':price' => $item->price
+            ]);
         }
 
-        return $this->orderDao->insert($data);
+        return ['id' => $order_id];
     }
 
     public function updateOrder($id, $data) {
-        if (isset($data['total']) && (!is_numeric($data['total']) || $data['total'] < 0)) {
-            throw new Exception("Total must be a non-negative number.");
-        }
-
         return $this->orderDao->update($id, $data);
     }
 

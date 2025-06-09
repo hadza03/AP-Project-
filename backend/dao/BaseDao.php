@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../config/Config.php';
 require_once __DIR__ . '/../db/Database.php';
 
-
 class BaseDao {
     protected $table;
     protected $connection;
@@ -31,9 +30,8 @@ class BaseDao {
         $sql = "INSERT INTO " . $this->table . " ($columns) VALUES ($placeholders)";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute($data);
-        return $this->connection->lastInsertId(); // 🧠 THIS is the fix
+        return $this->connection->lastInsertId(); // ✅ Vrati ID unesenog reda
     }
-    
 
     public function update($id, $data) {
         $fields = "";
@@ -54,10 +52,13 @@ class BaseDao {
     }
 
     public function query_unique($query, $params = []) {
-    $stmt = $this->connection->prepare($query);
-    $stmt->execute($params);
-    return $stmt->fetch();
-}
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute($params);
+        return $stmt->fetch();
+    }
 
+    public function getConnection() {
+        return $this->connection;
+    }
 }
 ?>
