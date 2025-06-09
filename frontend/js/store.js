@@ -42,7 +42,7 @@ const addToCart = (product) => {
       <div class="col-md-4 col-xs-6">
         <div class="product" data-id="${p.id}" style="cursor: pointer;">
           <div class="product-img">
-            <img src="/images/${encodeURIComponent(p.image || 'default.jpg')}">
+            <img src="./images/${encodeURIComponent(p.image || 'default.jpg')}">
             <div class="product-label">
               <span class="new">NEW</span>
             </div>
