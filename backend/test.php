@@ -40,11 +40,13 @@ function test_get_products() {
 function test_add_order() {
     $orderService = new OrderService();
     $data = [
-        "user_id" => 1, // Ensure this ID exists
-        "total" => 123.45,
+        
+        
         "items" => [
-            ["product_id" => 1, "quantity" => 2, "price" => 61.72]
-        ]
+    ["product_id" => 3, "quantity" => 2, "price" => 61.72]
+],
+"user_id" => 5
+
     ];
     try {
         $orderService->addOrder($data);
