@@ -5,7 +5,7 @@ document.getElementById("login-form").addEventListener("submit", async function 
   const password = document.querySelector("input[type=password]").value;
 
   try {
-    const res = await fetch("http://localhost/AUDIOPROJEKT/backend/auth/login", {
+    const res = await fetch("https://audio-backend-7csf7.ondigitalocean.app/AUDIOPROJEKT/backend/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })

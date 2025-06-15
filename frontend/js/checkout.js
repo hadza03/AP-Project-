@@ -62,7 +62,7 @@ const waitForElement = async (selector, timeout = 5000) => {
     console.log("📦 Sending payload:", payload);
 
     try {
-      const res = await fetch("http://localhost/AUDIOPROJEKT/backend/orders", {
+      const res = await fetch("https://audio-backend-7csf7.ondigitalocean.app/AUDIOPROJEKT/backend/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

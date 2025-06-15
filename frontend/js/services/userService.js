@@ -1,6 +1,6 @@
 // userService.js
 export async function registerUser(userData) {
-  const res = await fetch("http://localhost/AUDIOPROJEKT/backend/auth/register", {
+  const res = await fetch("https://audio-backend-7csf7.ondigitalocean.app/AUDIOPROJEKT/backend/auth/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -17,7 +17,7 @@ export async function registerUser(userData) {
 }
 
 export async function loginUser(credentials) {
-  const res = await fetch("http://localhost/AUDIOPROJEKT/backend/auth/login", {
+  const res = await fetch("https://audio-backend-7csf7.ondigitalocean.app/AUDIOPROJEKT/backend/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
